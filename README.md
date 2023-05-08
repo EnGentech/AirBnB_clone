@@ -4,4 +4,4 @@ illustrate back end prospect of the AirBnB website.
 The command line interpreter is aimed at interacting with
 the backend of the web application using a CMD interface
 
-My boss will add to this
+This is the Foundation of our full web application. Subsequently, we will be building on this project.
