@@ -33,8 +33,10 @@ class BaseModel:
         #self.id = id 
         #self.created_at = created_at
         #self.updated_at = updated_at
-		"""line 33-35 since we have defined the above below, i think it's duplicity without effects"""
-        if not kwargs:
+        """line 33-35 since we have defined the above below, i think it's duplicity without effects"""
+        if not kwargs or len(kwargs) < 1:
+		# kwargs can exist && be empty; with < 1 we are checking
+		#+ both non-existence and emptiness
             self.id = id
             self.created_at = created_at
             self.updated_at = updated_at
@@ -42,9 +44,13 @@ class BaseModel:
             for key, value in kwargs.items():
                 if key != "__class__":
                     if key == ["created_at", "updated_at"]:
+			        #Need explanation. Was thinking `in` should be used or
+					#+ if key == "created_at" or key == "updated_at"
                         value = datetime.strftime(value, '%Y-%m-%dT%H:%M:%S.%f')
-                    setattr(self, key, value)
-
+                    elif key == "id": # I added this line
+                        self.id = value #+ so that kwargs id can override
+										#+ default id
+                setattr(self, key, value)
     def __str__(self):
         """String representation of the BaseModel
 		`cls_name` is a variable that stores the name of our current class
