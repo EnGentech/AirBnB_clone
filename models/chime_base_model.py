@@ -11,26 +11,6 @@ class BaseModel:
 	BaseModel class defines the  attributes and methods
 	to be inherited by childclasses and instances
 
-<<<<<<< HEAD
-class BaseModel:
-    """BaseModel class defined here"""
-    global for_mat
-    for_mat = "%Y-%m-%dT%H:%M:%S.%f"
-
-    def __init__(self, *args, **kwargs):
-        """created the instantiation stage"""
-        if not kwargs:
-            self.id = str(uuid.uuid4())
-            self.created_at = datetime.now()
-            self.updated_at = datetime.now()
-        else:
-            for key_num, value_val in kwargs.items():
-                if key_num != "__class__":
-                    if key_num in ["created_at", "updated_at"]:
-                        value_val = datetime.strptime(value_val, for_mat)
-                    setattr(self, key_num, value_val)
-
-=======
 	@args:
 		`id`: assigns a universally unique identity for every Basemodel object
 		`created_at`: this assigns the current time of creation for every
@@ -71,7 +51,6 @@ class BaseModel:
                         self.id = value #+ so that kwargs id can override
 										#+ default id
                 setattr(self, key, value)
->>>>>>> 71d49abf209610f64fd32a8eff294fafb0dcaed1
     def __str__(self):
         """String representation of the BaseModel
 		`cls_name` is a variable that stores the name of our current class
@@ -105,7 +84,7 @@ class BaseModel:
 		"""
         my_dict = self.__dict__.copy()
         my_dict.update({
-            "__class__": self.__class__.__name__,
+            "__class__": __class__.__name__,
             "created_at": str(self.created_at.isoformat()),
             "updated_at": str(self.updated_at.isoformat())
             })
