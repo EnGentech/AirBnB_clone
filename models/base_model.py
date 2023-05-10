@@ -6,17 +6,24 @@ import uuid
 # Written by EnGentech and Chime
 
 
-class BaseModel:
+class BaseModel():
     """BaseModel class defined here"""
     id = str(uuid.uuid4())
     created_at = datetime.now()
     updated_at = datetime.now()
 
     def __int__(self, *args, **kwargs):
-        """An instantiation of the Base Model"""
-        self.id = id
-        self.created_at = created_at
-        self.updated_at = updated_at
+    """An instantiation of the Base Model"""
+        if not kwargs:
+            self.id = id
+            self.created_at = created_at
+            self.updated_at = updated_at
+        else:
+            for key_num, value_val in kwargs.items():
+                if key_num != "__class__":
+                    if key_num == ["created_at", "updated_at"]:
+                        value_val = datetime.strftime(value_val, '%Y-%m-%dT%H:%M:%S.%f')
+                    setattr(self, key_num, value_val)
 
     def __str__(self):
         """String instantiation of the BaseModel"""
