@@ -6,6 +6,7 @@ import uuid
 	interpreter for the AirBnB project
 """
 
+<<<<<<< HEAD
 class BaseModel:
     """
 	BaseModel class defines the  attributes and methods
@@ -18,11 +19,16 @@ class BaseModel:
 		`updated_at`: this initially takes same value as `created_at` and 
 					keeps track of the time of any update on attributes
 	"""
+=======
+class BaseModel():
+    """BaseModel class defined here"""
+>>>>>>> 83f197e306609937ea8a15385a300d042bb4133d
     id = str(uuid.uuid4())
     created_at = datetime.now()
     updated_at = datetime.now()
 
     def __int__(self, *args, **kwargs):
+<<<<<<< HEAD
         """
 		An instantiation of the Base Model
 
@@ -33,6 +39,19 @@ class BaseModel:
         self.id = id
         self.created_at = created_at
         self.updated_at = updated_at
+=======
+    """An instantiation of the Base Model"""
+        if not kwargs:
+            self.id = id
+            self.created_at = created_at
+            self.updated_at = updated_at
+        else:
+            for key_num, value_val in kwargs.items():
+                if key_num != "__class__":
+                    if key_num == ["created_at", "updated_at"]:
+                        value_val = datetime.strftime(value_val, '%Y-%m-%dT%H:%M:%S.%f')
+                    setattr(self, key_num, value_val)
+>>>>>>> 83f197e306609937ea8a15385a300d042bb4133d
 
     def __str__(self):
         """String representation of the BaseModel
