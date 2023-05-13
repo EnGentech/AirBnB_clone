@@ -2,6 +2,8 @@
 # Written by EnGentech and Chime
 from datetime import datetime
 import uuid
+from models import storage
+
 """This program defines the console/command line
 	interpreter for the AirBnB project
 """
@@ -33,6 +35,7 @@ class BaseModel:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
+            storage.new(self)
         else:
             for key_num, value_val in kwargs.items():
                 if key_num != "__class__":
@@ -58,7 +61,7 @@ class BaseModel:
 		`return`: returns the time that last call to save method occurred
 		"""
         self.updated_at = datetime.now()
-        return self.updated_at
+        storage.save()
 
     def to_dict(self):
         """

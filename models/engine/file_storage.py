@@ -12,7 +12,7 @@ class FileStorage:
         return self.__objects
 
     def new(self, obj):
-        key_dict = self.__class__.__name__+"."+obj.id
+        key_dict = obj.__class__.__name__+"."+obj.id
         self.__objects.update({key_dict: obj})
 
     def save(self):
@@ -28,5 +28,3 @@ class FileStorage:
         else:
             with open(FileStorage.__file_path, "r", encoding="utf-8") as f:
                 json_data = json.load(f)
-                #for key, value in json_data.items():
-                    #obj[key] = class_dict[value["__class__"]](**value)
