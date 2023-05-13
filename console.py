@@ -2,14 +2,12 @@
 
 import cmd
 from models.base_model import BaseModel
-"""documentation needed here"""
+from models import storage
+
 
 class HBNBCommand(cmd.Cmd):
-    """the prompt message to recursively display"""
+    clas = {'BaseModel': BaseModel}
     prompt = "(hbnd) "
-
-    global clas
-    clas = ["BaseModel"]
 
     def do_quit(self, arg):
         """Quit (hbnd) CLI\n"""
@@ -27,10 +25,10 @@ class HBNBCommand(cmd.Cmd):
         """Create an instance of the BaseModel"""
         if not arg:
             print("** class name missing **")
-        elif arg not in clas:
+        elif arg not in self.clas.keys():
             print("** class doesn't exist **")
         else:
-            new_inst = BaseModel()
+            new_inst = self.clas[arg]()
             new_inst.save()
             print(new_inst.id)
 
@@ -38,19 +36,48 @@ class HBNBCommand(cmd.Cmd):
         """Display the string representation of an instance base on
         class name and id"""
         lst = arg.split()
-        if arg and lst[0] in clas:
-            cl_name = lst[0] + "()"
-            print(cl_name)
+
         if not arg:
             print("** class name missing **")
-        elif lst[0] not in clas:
+        elif lst[0] not in self.clas.keys():
             print("** class doesn't exist **")
         elif len(lst) < 2:
             print("** instance id missing **")
-        elif lst[1] != cl_name.id:
+            return
+
+        obj_all = storage.all()
+
+        key = "{}.{}".format(lst[0], lst[1])
+        if key not in obj_all:
             print("** no instance found **")
-        else:
-            print("pass") #Currently working on this
+            return
+
+        obj = obj_all[key]
+        print(obj)
+
+    def do_destroy(self, arg):
+        """Delete an instance considering the class name and its id"""
+        lst = arg.split()
+
+        if not arg:
+            print("** class name missing **")
+        elif lst[0] not in self.clas.keys():
+            print("** class doesn't exist **")
+        elif len(lst) < 2:
+            print("** instance id missing **")
+            return
+
+        all_obj = storage.all()
+        key = "{}.{}".format(lst[0], lst[1])
+        if key not in all_obj:
+            print("** no instance found **")
+            return
+
+        del all_obj[key]
+        storage.save()
+
+    def do_all(self, arg):
+        """Display all the instances in the dictionary"""
 
 
 if __name__ == '__main__':
