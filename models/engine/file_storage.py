@@ -24,7 +24,14 @@ class FileStorage:
 
     def reload(self):
         if not os.path.isfile(self.__file_path):
-            pass
-        else:
-            with open(FileStorage.__file_path, "r", encoding="utf-8") as f:
-                json_data = json.load(f)
+            return
+
+        from models.base_model import BaseModel
+        with open(FileStorage.__file_path, "r", encoding="utf-8") as f:
+            j_file = json.load(f)
+
+        for key, value in j_file.items():
+            class_name, obj_id = key.split('.')
+            get_me = eval(class_name)  # Get the class by name
+            obj = get_me(**value)  # Create an instance of the class using the data
+            self.new(obj)
