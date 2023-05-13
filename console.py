@@ -2,9 +2,10 @@
 
 import cmd
 from models.base_model import BaseModel
-
+"""documentation needed here"""
 
 class HBNBCommand(cmd.Cmd):
+    """the prompt message to recursively display"""
     prompt = "(hbnd) "
 
     global clas
@@ -49,7 +50,7 @@ class HBNBCommand(cmd.Cmd):
         elif lst[1] != cl_name.id:
             print("** no instance found **")
         else:
-            print("pass")
+            print("pass") #Currently working on this
 
 
 if __name__ == '__main__':
