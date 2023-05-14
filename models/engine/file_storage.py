@@ -25,7 +25,8 @@ class FileStorage:
     def reload(self):
         if not os.path.isfile(self.__file_path):
             return
-
+        
+        from models.user import User
         from models.base_model import BaseModel
         with open(FileStorage.__file_path, "r", encoding="utf-8") as f:
             j_file = json.load(f)
