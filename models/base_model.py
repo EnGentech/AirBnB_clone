@@ -3,7 +3,6 @@
 from datetime import datetime
 import uuid
 from models import storage
-
 """This program defines the console/command line
 	interpreter for the AirBnB project
 """

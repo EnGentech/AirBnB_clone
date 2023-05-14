@@ -26,6 +26,11 @@ class FileStorage:
         if not os.path.isfile(self.__file_path):
             return
         
+        from models.place import Place
+        from models.state import State
+        from models.city import City
+        from models.amenity import Amenity
+        from models.review import Review
         from models.user import User
         from models.base_model import BaseModel
         with open(FileStorage.__file_path, "r", encoding="utf-8") as f:
