@@ -6,7 +6,7 @@ from models import storage
 import re
 
 class HBNBCommand(cmd.Cmd):
-    clas = {'BaseModel': BaseModel}
+    clas = {'BaseModel': BaseModel, 'User': User}
     prompt = "(hbnd) "
 
     def do_quit(self, arg):
