@@ -11,6 +11,7 @@ from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
 
+
 class HBNBCommand(cmd.Cmd):
     clas = {'BaseModel': BaseModel, 'City': City, 'Amenity': Amenity,\
             'User': User, 'State': State, 'Place': Place, 'Review': Review}
@@ -89,41 +90,41 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, arg):
         """Display all the instances in the dictionary"""
         split_args = arg.split()
-		#splits arg received
+		# splits arg received
         objects = storage.all()
-		#store a copy of FileStorage dictionary
+		# store a copy of FileStorage dictionary
         hold_string_to_print = []
-		#empty list to hold what to print
+		# empty list to hold what to print
 		
         if len(split_args) == 0:
-			#if no argument is passed to all
+			# if no argument is passed to all
             for value in objects.values():
-			#loop through all values in objects 
+			# loop through all values in objects 
                 hold_string_to_print.append(str(value))
-				#convert every value in object to string and
-				#add every value in object to the list of arguments to print
-				#this means that hold_string_to_print stores 
-				#all values of objects
+				# convert every value in object to string and
+				# add every value in object to the list of arguments to print
+				# this means that hold_string_to_print stores 
+				# all values of objects
         elif split_args[0] in self.clas.keys():
-		#if first argument is defined as a key in clas (i.e) dictionary
+		# if first argument is defined as a key in clas (i.e) dictionary
             for key, value in objects.items():
-			#loop through each key and value in object items
+			# loop through each key and value in object items
                 if split_args[0] in key:
-				#if first arg matches any key in object items
+				# if first arg matches any key in object items
                     hold_string_to_print.append(str(value))
-					#add the value of that key to our list we want to print
+					# add the value of that key to our list we want to print
         else:
             print("** class doesn't exist **")
 
         print(hold_string_to_print)
     def do_update(self, arg):
         """Update the class object by adding new attributes"""
-        #pattern = r'\s+(?=([^"]*"[^"]*")*[^"]*$)'
-        #lst = re.split(pattern, arg)
+        # pattern = r'\s+(?=([^"]*"[^"]*")*[^"]*$)'
+        # lst = re.split(pattern, arg)
         lst = arg.split()
         all_storage = storage.all()
-        #chk_key = "{}.{}".format(lst[0], lst[1])
-        #key, value = all_storage.split(".")
+        # chk_key = "{}.{}".format(lst[0], lst[1])
+        # key, value = all_storage.split(".")
 
         if not arg:
             print("** class name missing **")
@@ -144,8 +145,8 @@ class HBNBCommand(cmd.Cmd):
                 new_dict = {}
                 new_dict = all_storage[chk_key]
                 setattr(new_dict, key, lst[3].strip('"'))
-                #new_dict[key] = {lst[3]}
-                #new_dict.append({str(lst[2]): lst[3]})
+                # new_dict[key] = {lst[3]}
+                # new_dict.append({str(lst[2]): lst[3]})
                 storage.save()
 
 
