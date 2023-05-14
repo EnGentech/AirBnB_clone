@@ -3,7 +3,7 @@
 import cmd
 from models.base_model import BaseModel
 from models import storage
-import json
+import re
 
 class HBNBCommand(cmd.Cmd):
     clas = {'BaseModel': BaseModel}
@@ -39,8 +39,10 @@ class HBNBCommand(cmd.Cmd):
 
         if not arg:
             print("** class name missing **")
+            return
         elif lst[0] not in self.clas.keys():
             print("** class doesn't exist **")
+            return
         elif len(lst) < 2:
             print("** instance id missing **")
             return
@@ -60,8 +62,10 @@ class HBNBCommand(cmd.Cmd):
 
         if not arg:
             print("** class name missing **")
+            return
         elif lst[0] not in self.clas.keys():
             print("** class doesn't exist **")
+            return
         elif len(lst) < 2:
             print("** instance id missing **")
             return
@@ -105,6 +109,39 @@ class HBNBCommand(cmd.Cmd):
                     for key, val in obj.items():
                         chimeMyGuy = obj[key]
                         print(chimeMyGuy)
+
+    def do_update(self, arg):
+        """Update the class object by adding new attributes"""
+        #pattern = r'\s+(?=([^"]*"[^"]*")*[^"]*$)'
+        #lst = re.split(pattern, arg)
+        lst = arg.split()
+        all_storage = storage.all()
+        #chk_key = "{}.{}".format(lst[0], lst[1])
+        #key, value = all_storage.split(".")
+
+        if not arg:
+            print("** class name missing **")
+        elif lst[0] not in self.clas.keys():
+            print("** class doesn't exist **")
+        elif len(lst) < 2:
+            print("** instance id missing **")
+        elif lst[1]:
+            chk_key = "{}.{}".format(lst[0], lst[1])
+            if chk_key not in all_storage:
+                print("** no instance found **")
+            elif len(lst) < 3:
+                print("** attribute name missing **")
+            elif len(lst) < 4:
+                print("** value missing **")
+            else:
+                key = str(lst[2])
+                new_dict = {}
+                new_dict = all_storage[chk_key]
+                setattr(new_dict, key, lst[3].strip('"'))
+                #new_dict[key] = {lst[3]}
+                #new_dict.append({str(lst[2]): lst[3]})
+                storage.save()
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
