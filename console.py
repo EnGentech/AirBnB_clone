@@ -5,9 +5,15 @@ from models.base_model import BaseModel
 from models.user import User
 from models import storage
 from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
 class HBNBCommand(cmd.Cmd):
-    clas = {'BaseModel': BaseModel, 'User': User}
+    clas = {'BaseModel': BaseModel, 'City': City, 'Amenity': Amenity,\
+            'User': User, 'State': State, 'Place': Place, 'Review': Review}
     prompt = "(hbnd) "
 
     def do_quit(self, arg):
