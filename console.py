@@ -81,34 +81,34 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, arg):
         """Display all the instances in the dictionary"""
-        lst = arg.split()
-        if not arg:
-            obj = storage.all()
-            for key, value in obj.items():
-                new = obj[key]
-                #format_new = json.loads(str(new))
-                print(new)
-                #print(format_new)
-            return
-
-        '''The all method works fine but the issue of making it a list and
-        string type remains the case now, I have tried to implement it without
-        hard coding, pleae look into it if you can implement the code to work
-        as required. this is almost 5am, let me sleep for 2hours. Good morning'''
-
-        if arg not in self.clas.keys():
+        split_args = arg.split()
+		#splits arg received
+        objects = storage.all()
+		#store a copy of FileStorage dictionary
+        hold_string_to_print = []
+		#empty list to hold what to print
+		
+        if len(split_args) == 0:
+			#if no argument is passed to all
+            for value in objects.values():
+			#loop through all values in objects 
+                hold_string_to_print.append(str(value))
+				#convert every value in object to string and
+				#add every value in object to the list of arguments to print
+				#this means that hold_string_to_print stores 
+				#all values of objects
+                print(hold_string_to_print)
+        elif split_args[0] in self.clas.keys():
+		#if first argument is defined as a key in clas (i.e) dictionary
+            for key, value in objects.items():
+			#loop through each key and value in object items
+                if split_args[0] in key:
+				#if first arg matches any key in object items
+                    hold_string_to_print.append(str(value))
+					#add the value of that key to our list we want to print
+            print(hold_string_to_print)
+        else:
             print("** class doesn't exist **")
-        elif arg in self.clas.keys():
-            obj = storage.all()
-            #new_dict_class = {}
-            for key, value in obj.items():
-                keys, values = key.split(".")
-            use_clas = keys
-            if keys in self.clas.keys():
-                if key.startswith(use_clas):
-                    for key, val in obj.items():
-                        chimeMyGuy = obj[key]
-                        print(chimeMyGuy)
 
     def do_update(self, arg):
         """Update the class object by adding new attributes"""
