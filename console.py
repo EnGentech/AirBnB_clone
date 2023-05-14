@@ -2,6 +2,7 @@
 
 import cmd
 from models.base_model import BaseModel
+from models.user import User
 from models import storage
 import re
 
@@ -97,7 +98,6 @@ class HBNBCommand(cmd.Cmd):
 				#add every value in object to the list of arguments to print
 				#this means that hold_string_to_print stores 
 				#all values of objects
-                print(hold_string_to_print)
         elif split_args[0] in self.clas.keys():
 		#if first argument is defined as a key in clas (i.e) dictionary
             for key, value in objects.items():
@@ -106,10 +106,10 @@ class HBNBCommand(cmd.Cmd):
 				#if first arg matches any key in object items
                     hold_string_to_print.append(str(value))
 					#add the value of that key to our list we want to print
-            print(hold_string_to_print)
         else:
             print("** class doesn't exist **")
 
+        print(hold_string_to_print)
     def do_update(self, arg):
         """Update the class object by adding new attributes"""
         #pattern = r'\s+(?=([^"]*"[^"]*")*[^"]*$)'
