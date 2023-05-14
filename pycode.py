@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 import random
 """This code is written to pass pycode
-test and nothing serious"""
+    test and nothing serious
+    @authors: EnGenTech and Chime Kingsley"""
 
 
 def your_luck():
