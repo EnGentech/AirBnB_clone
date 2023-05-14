@@ -3,14 +3,14 @@
 import cmd
 from models.base_model import BaseModel
 from models import storage
-
+import json
 
 class HBNBCommand(cmd.Cmd):
     clas = {'BaseModel': BaseModel}
     prompt = "(hbnd) "
 
     def do_quit(self, arg):
-        """Quit (hbnd) CLI\n"""
+        '''Quit (hbnd) CLI\n'''
         return True
 
     def do_EOF(self, arg):
@@ -52,8 +52,7 @@ class HBNBCommand(cmd.Cmd):
             print("** no instance found **")
             return
 
-        obj = obj_all[key]
-        print(obj)
+        print(obj_all[key])
 
     def do_destroy(self, arg):
         """Delete an instance considering the class name and its id"""
@@ -78,7 +77,34 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, arg):
         """Display all the instances in the dictionary"""
+        lst = arg.split()
+        if not arg:
+            obj = storage.all()
+            for key, value in obj.items():
+                new = obj[key]
+                #format_new = json.loads(str(new))
+                print(new)
+                #print(format_new)
+            return
 
+        '''The all method works fine but the issue of making it a list and
+        string type remains the case now, I have tried to implement it without
+        hard coding, pleae look into it if you can implement the code to work
+        as required. this is almost 5am, let me sleep for 2hours. Good morning'''
+
+        if arg not in self.clas.keys():
+            print("** class doesn't exist **")
+        elif arg in self.clas.keys():
+            obj = storage.all()
+            #new_dict_class = {}
+            for key, value in obj.items():
+                keys, values = key.split(".")
+            use_clas = keys
+            if keys in self.clas.keys():
+                if key.startswith(use_clas):
+                    for key, val in obj.items():
+                        chimeMyGuy = obj[key]
+                        print(chimeMyGuy)
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
