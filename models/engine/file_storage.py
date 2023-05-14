@@ -4,6 +4,7 @@
 import json
 import os
 
+
 class FileStorage:
     __file_path = "file.json"
     __objects = {}
@@ -25,7 +26,7 @@ class FileStorage:
     def reload(self):
         if not os.path.isfile(self.__file_path):
             return
-        
+
         from models.place import Place
         from models.state import State
         from models.city import City
@@ -39,5 +40,5 @@ class FileStorage:
         for key, value in j_file.items():
             class_name, obj_id = key.split('.')
             get_me = eval(class_name)  # Get the class by name
-            obj = get_me(**value)  # Create an instance of the class using the data
+            obj = get_me(**value)  # Create an instance of the class
             self.new(obj)
