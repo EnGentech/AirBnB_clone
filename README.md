@@ -43,6 +43,6 @@ example
 
 
 
-written by EnGentech (engen.inyang@gmail.com)
-
-add yours please, we will look into this tonight
+written by:
+	EnGentech (engen.inyang@gmail.com) 
+	Chime Kingsley (onlinekingsley@gmail.com)
