@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+"""This code is made as a CLI to the class
+of BaseModel created for the AirBnB project"""
 
 import cmd
 from models.base_model import BaseModel
