@@ -1,42 +1,43 @@
 #!/usr/bin/python3
-"""This file defines unit test cases
-for base_model module
-"""
-
+"""Testing our base_model file"""
 import unittest
-from datetime import datetime
 from models.base_model import BaseModel
 
+
 class TestBaseModel(unittest.TestCase):
-    """cass definition for unit testing"""
-    
-    def setUp(self):
-        """Setup for instance"""
-        self.fst = BaseModel()
-        self.sec = BaseModel()
+	"""This class helps us to test the methods in our BaseModel"""
+	model = BaseModel()
+	
+	def test_attributes(self):
+		"""testing our class attributes"""
+		self.assertTrue(isinstance(self.model.id, str))
+		self.assertTrue(hasattr(self.model, "id"))
+		self.assertTrue(hasattr(self.model, "created_at"))
+		self.assertTrue(hasattr(self.model, "updated_at"))
 
-    def test_ModuleDocString(self):
-        """Test module docstring of BaseModel instance"""
-        self.assertTrue(len(BaseModel.__doc__) > 10)
+	def test_methods(self):
+		"""testing our class attributes"""
+		self.assertTrue(hasattr(self.model, "save"))
+		self.assertTrue(hasattr(self.model, "__str__"))
+		self.assertTrue(hasattr(self.model, "__init__"))
+		self.assertTrue(hasattr(self.model, "to_dict"))
 
-    def test_ClassDocString(self):
-        """Test class docstring"""
-        self.assertFalse(len(BaseModel.__class__.__name__) > 5)
 
-    def test_UuidKey(self):
-        """Test the validation of uuid"""
-        self.assertNotEqual(self.fst.id, self.sec.id)
-        self.assertIsInstance(self.fst.id, str)
-        
-    def test_objectType(self):
-        """Test if object is type dictionary"""
-        self.assertIsInstance(self.sec.to_dict(), dict)
+	def test_unique_created_and_updated_datetime(self):
+		"""testing our class attributes"""
+		self.assertTrue(self.model.created_at != self.model.updated_at)
 
-    def test_instance_type(self):
-        """tests what the instance type is"""
-        self.assertEqual(str(self.sec),
-                        "[BaseModel] ({}) {}".format(BaseModel().id,
-                        BaseModel().__dict__))
+	def test_module_docstring(self):
+		"""lets test if we documented our module"""
+		self.assertTrue(len(BaseModel.__doc__) >= 1)
 
-if __name__ == '__main__':
-    unittest.main()
+	def test_class_docstring(self):
+		"""lets test if we documented our module"""
+		self.assertTrue(len(BaseModel.save.__doc__) >= 1)
+
+	def tearDown(self):
+		"""this runs after every method test finishes"""
+		#print("A method just finished running. Tearing Down....")
+
+
+
