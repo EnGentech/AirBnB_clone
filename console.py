@@ -117,6 +117,7 @@ class HBNBCommand(cmd.Cmd):
                     # add the value of that key to our list we want to print
         else:
             print("** class doesn't exist **")
+            return
 
         print(hold_string_to_print)
 
