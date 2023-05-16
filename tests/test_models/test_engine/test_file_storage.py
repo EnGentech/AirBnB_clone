@@ -14,8 +14,7 @@ class TestUser(unittest.TestCase):
 
     def test_objectType(self):
         """checking if the attribute __object exist"""
-        self.assertTrue(hasattr(self.user, FileStorage.__objects))
-        # self.assertTrue(hasattr(self.user.__file_path))
+        self.assertTrue(self.user.all())
 
     def test_all(self):
         """checking if all method exist"""
