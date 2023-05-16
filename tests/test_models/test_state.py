@@ -1,11 +1,11 @@
 #!/usr/bin/python3
 """Testing users"""
 import unittest
-from models.user import User
+from models.state import State
 
 class TestUser(unittest.TestCase):
 	"""This is test for user class"""
-	user = User()
+	user = State()
 	def test_user(self):
 		"""testing user class"""
 		self.assertTrue(User())
@@ -16,10 +16,10 @@ class TestUser(unittest.TestCase):
 		self.assertTrue(self.user.password=='')
 		self.assertTrue(self.user.first_name=='')
 		self.assertTrue(self.user.last_name=='')
-		#self.assertTrue(hasattr(self.user, "email"))
-		#self.assertTrue(hasattr(self.user, "password"))
-		#self.assertTrue(hasattr(self.user, "first_name"))
-		#self.assertTrue(hasattr(self.user, "last_name"))
+		# self.assertTrue(hasattr(self.user, "email"))
+		# self.assertTrue(hasattr(self.user, "password"))
+		# self.assertTrue(hasattr(self.user, "first_name"))
+		# self.assertTrue(hasattr(self.user, "last_name"))
 
 	def test_attr_type(self):
 		"""testing the attributes of test class"""
