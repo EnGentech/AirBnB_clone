@@ -1,14 +1,14 @@
 #!/usr/bin/python3
 """Testing users"""
 import unittest
-from models.user import User
+from models.place import Place
 
 class TestUser(unittest.TestCase):
 	"""This is test for user class"""
 	user = User()
 	def test_user(self):
 		"""testing user class"""
-		self.assertTrue(User())
+		self.assertTrue(Place())
 	
 	def test_attr(self):
 		"""testing the attributes of test class"""
