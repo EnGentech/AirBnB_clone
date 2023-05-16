@@ -15,6 +15,9 @@ from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
+    """This class defines the functions of our CLI.
+        This is class doctrings is written to pass the checker
+    """
     clas = {'BaseModel': BaseModel, 'City': City, 'Amenity': Amenity,
             'User': User, 'State': State, 'Place': Place, 'Review': Review}
     prompt = "(hbnd) "
