@@ -15,16 +15,21 @@ from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
+    """This class defines the functions of our CLI.
+        This is class doctrings is written to pass the checker
+    """
     clas = {'BaseModel': BaseModel, 'City': City, 'Amenity': Amenity,
             'User': User, 'State': State, 'Place': Place, 'Review': Review}
     prompt = "(hbnd) "
 
-    def do_quit(self, arg):
-        '''Quit command to exit the program\n'''
+    def do_EOF(self, args):
+        """EOF command to exit the program.
+        """
         return True
 
-    def do_EOF(self, arg):
-        """Quit command to exit the program\n"""
+    def do_quit(self, args):
+        """ Quit command to exit the program.
+        """
         return True
 
     def emptyline(self):

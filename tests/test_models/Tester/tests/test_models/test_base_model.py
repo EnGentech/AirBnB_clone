@@ -30,7 +30,7 @@ class TestBaseModel(unittest.TestCase):
 	def test_save(self):
 		"""tests whether time is updated"""
 		newvar = self.model.updated_at
-		self.model.save()
+		#self.model.save()
 		self.assertNotEqual(newvar, self.model.updated_at)
 
 	#def test_str(self):
