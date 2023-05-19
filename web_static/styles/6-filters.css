@@ -2,9 +2,9 @@
     max-width: 1000px;
     padding-top: 30px;
     margin-bottom: 30px;
-    display: flex;
+    /* display: flex; */
     justify-content: center;
-    /*align-items: center;*/
+    /* align-items: center; */
     margin: 0 auto;
 }
 
