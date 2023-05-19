@@ -28,3 +28,6 @@ button{
     margin-left: auto; /* this line shift the button to the right */
     margin-right: 30px;
 }
+button:hover{
+    opacity: 90%;
+}
