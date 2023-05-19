@@ -1,1 +1,1 @@
-HTML and CSS code
+Console application for AirBnB web application
