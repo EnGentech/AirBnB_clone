@@ -74,14 +74,10 @@ button:hover{
     background-color: #FAFAFA;
 }
 
-.locations:hover .popover{
+.locations:hover .popover, .amenities:hover .popover{
     display: block;
     position: relative;
-}
-
-.amenities:hover .popover{
-    display: block;
-    position: relative;
+    z-index: 1;
 }
 
 h3, h4{
